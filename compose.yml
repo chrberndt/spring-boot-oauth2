@@ -1,0 +1,11 @@
+version: "3.6"
+services:
+  keycloak:
+    image: keycloak/keycloak:24.0.4-0
+    container_name: keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: start-dev
+    ports:
+      - "8180:8080"
