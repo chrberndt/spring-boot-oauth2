@@ -15,27 +15,14 @@ public class OAuth2Controller {
 	@GetMapping("/api/test")
 	public Map<String, Object> getTest(Authentication authentication) {
 
-		System.out.println("getTest()");
-
 		printAuthorities(authentication);
 
 		return getClaimsAsMap(authentication);
 
 	}
 
-//	@GetMapping("/api/test")
-//	public TypeValue[] getTest(Authentication authentication) {
-//
-//		System.out.println("getTest()");
-//
-//		printAuthorities(authentication);
-//
-//		return getClaims(authentication);
-//
-//	}
-
 	private Map<String, Object> getClaimsAsMap(Authentication authentication) {
-		Jwt jwt = (Jwt)authentication.getPrincipal();
+		Jwt jwt = (Jwt) authentication.getPrincipal();
 		return jwt.getClaims();
 	}
 
