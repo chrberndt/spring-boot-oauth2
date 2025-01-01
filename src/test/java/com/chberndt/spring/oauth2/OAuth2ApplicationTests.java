@@ -24,7 +24,7 @@ class OAuth2ApplicationTests {
 
 		// @formatter:off
 		this.mvc
-				.perform(get("/").with(jwt()))
+				.perform(get("/api/test").with(jwt()))
 				.andExpect(status().isOk());
 		// @formatter:on
 	}
