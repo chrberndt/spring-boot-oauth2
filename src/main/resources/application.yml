@@ -6,4 +6,5 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8180/realms/spring-boot
+          issuer-uri: http://localhost:8180/realms/quickstart
+#          issuer-uri: http://localhost:8180/realms/spring-boot
