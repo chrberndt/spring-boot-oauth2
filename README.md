@@ -96,7 +96,7 @@ screen).
      * Go to: Clients ➔ Client list
      * Select: account ➔ Secrets
 
-## Convince yourself that the endpoint `http://localhost/api/test` is protected
+## Convince yourself that the endpoint `http://localhost:8080/api/test` is protected
 
 ```bash
 curl -I http://localhost:8080/api/test
