@@ -13,20 +13,29 @@ import java.util.Set;
 public class OAuth2Controller {
 
 	@GetMapping("/api/test")
-	public Map<String, Object> getTest(Authentication authentication) {
+	public TypeValue[] getClaimsAsArray(Authentication authentication) {
 
 		printAuthorities(authentication);
 
-		return getClaimsAsMap(authentication);
+		return doGetClaimsAsArray(authentication);
 
 	}
 
-	private Map<String, Object> getClaimsAsMap(Authentication authentication) {
+	@GetMapping("/api/test/map")
+	public Map<String, Object> getClaimsAsMap(Authentication authentication) {
+
+		printAuthorities(authentication);
+
+		return doGetClaimsAsMap(authentication);
+
+	}
+
+	private Map<String, Object> doGetClaimsAsMap(Authentication authentication) {
 		Jwt jwt = (Jwt) authentication.getPrincipal();
 		return jwt.getClaims();
 	}
 
-	private TypeValue[] getClaimsAsArray(Authentication authentication) {
+	private TypeValue[] doGetClaimsAsArray(Authentication authentication) {
 
 		try {
 			Jwt jwt = (Jwt) authentication.getPrincipal();
@@ -54,6 +63,7 @@ public class OAuth2Controller {
 	private void printAuthorities(Authentication authentication) {
 
 		Collection<?> authorities = authentication.getAuthorities();
+		System.out.println();
 		for (Object authority : authorities) {
 			System.out.println(authority);
 		}
