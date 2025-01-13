@@ -2,9 +2,11 @@ services:
   keycloak:
     image: keycloak/keycloak:26.0.7-0
     container_name: keycloak
+    command: ["start-dev", "--import-realm"]
+    volumes:
+      - ./docker/keycloak/realm-import.json:/opt/keycloak/data/import/realm-import.json
     environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    command: start-dev
+      KC_BOOTSTRAP_ADMIN_USER: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
     ports:
       - "8180:8080"
