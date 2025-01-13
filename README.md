@@ -23,78 +23,19 @@ This will automatically launch a Keycloak server (as configured in `compose.yml`
 Keycloak server is then accessible at http://localhost:8180 with the following credentials:
 
 ```bash
-# user: admin
+# user: temp-admin
 # password: admin
 ```
 
-### Setup example realm
+## Example realm setup
 
-1. Login as `admin/admin`
-1. Create a new realm ("Create realm" button below the realm switcher in the upper left corner of the Keycloak admin
-screen).
+The example realm `spring-boot` is created automatically during startup. The configuration for the `spring-boot` realm is located at 
 
-#### Either import the preconfigured realm by selecting
-
-`docker/keycloak/realm-import.json`
-
-#### Or create the spring-boot realm manually:
-
-1. Enter a Realm name: spring-boot
-   This will create a realm prepopulated with a number of default scopes and realm roles prepopulated by Keycloak.
-2. Create a client meant to be used by your Spring Boot API
-   * Go to: Clients ➔ Create client
-     * General settings
-       * Client ID: spring-boot-api
-       * Next
-     * Capability config
-       * Client authentication: On
-       * Authorization: On
-       * Authentication flow: Standard flow, Direct access grants (default)
-       * Next
-     * Login settings
-       * TODO: empty (default)
-     * Client scopes
-       * spring-boot-api-dedicated ➔ Add mapper ➔ From predefined mappers
-         * realm-roles
-         * Add
-       * Select: realm roles
-         * Change `Token Claim Name` to `roles`
-         * Keep other settings as preconfigured
-         * Save
-2. Add two Realm roles (user + admin)
-   Go to Realm roles and select "Create role"
-3. Add two Users (alice + bob)
-   Go to: Users and select "Create new user"
-   * Username: alice
-   * Email: alice@example.com
-   * First name: Alice
-   * Last name: Liddell
-   * Create
-   * Credentials: Set password
-       * Password: secret
-       * Temporary: off
-       * Save
-   * Role mapping
-       * Assign role: admin + user
-       * Assign
-       * Unassign default-roles-quickstart
-   * Username: bob
-   * Email: bob@example.com
-   * First name: Bob
-   * Last name: Builder
-   * Create
-   * Credentials: Set password
-     * Password: secret
-     * Temporary: off
-     * Save
-   * Role mapping
-     * Assign role: user
-     * Assign
-     * Unassign default-roles-quickstart
-4. Client configuration: account
-  * Obtain the client secret
-     * Go to: Clients ➔ Client list
-     * Select: account ➔ Secrets
+```tree
+docker/
+└── keycloak
+    └── realm-import.json
+```
 
 ## Convince yourself that the endpoint `http://localhost:8080/api/test` is protected
 
